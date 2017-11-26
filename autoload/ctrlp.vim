@@ -1576,7 +1576,12 @@ endf
 " *** Paths {{{2
 " Line formatting {{{3
 fu! s:formatline(str)
-	let str = a:str
+	if exists('*WebDevIconsGetFileTypeSymbol')
+		let str = WebDevIconsGetFileTypeSymbol(a:str) . ' ' . a:str
+	el
+		let str = a:str
+	en
+
 	let ct = s:curtype()
 	if ct == 'buf'
 		let bufnr = s:bufnrfilpath(str)[0]
